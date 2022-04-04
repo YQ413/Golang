@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <style>
+    *{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+    }
+    section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        filter: hue-rotate(120deg);
+        animation: animate 10s linear infinite;
+    }
+    .box {
+        position: relative;
+        padding: 50px;
+        width: 360px;
+        height: 480px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:rgba(250,250,250,0.8);
+        border-radius: 6px;
+        box-shadow: 0 5px 35px rgba(0,0,0,0.2);
+    }
+    .box::after{
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 5px;
+        pointer-events: none;
+    }
+    .box .form {
+        position: relative;
+        width: 100%;
+    }
+    .box .form h2 {
+        color: black;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+    }
+    .box .form .inputBx {
+        position: relative;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .box .form .inputA {
+        position: relative;
+        width: 60%;
+        margin-bottom: 20px;
+    }
+    .box .form .inputBx input {
+        width: 100%;
+        outline: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: transparent;
+        padding: 8px 10px;
+        padding-left:35px;
+        border-radius: 6px;
+        color: black;
+        font-size: 16px;
+        font-weight: 300;
+        box-shadow: inset 0 0 25px rgba(0,0,0,0.2);
+    }
+    .box .form .inputA input {
+        width: 100%;
+        outline: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: transparent;
+        padding: 8px 10px;
+        /*padding-left:35px;*/
+        border-radius: 6px;
+        color: black;
+        font-size: 16px;
+        font-weight: 300;
+        box-shadow: inset 0 0 25px rgba(0,0,0,0.2);
+    }
+    .box .form .inputA img{
+        position:absolute;
+        top:3px;
+        margin-left: 5px;
+        width: 100px;
+        /*top:1px;
+        left:1px;*/
+        /*transform:scale(0.9);*/
+    }
+    .box .form .inputBx img{
+        width:35px;
+        height:35px;
+        position:absolute;
+        top:1px;
+        left:1px;
+        transform:scale(0.6);
+    }
+    .box .form .inputBx input::placeholder{
+        color:darkgray;
+    }
+    .box .form .inputBx input.login {
+        background: #FFA500;
+        color: #111;
+        max-width: 100px;
+        padding: 8px 10px;
+        box-shadow: none;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin-right: 55px;
+
+    }
+    .box .form .inputBx input.register{
+        background: #008000;
+        color: #ffffff;
+        max-width: 100px;
+        padding: 8px 10px;
+        box-shadow: none;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+        /*form  {
+            text-align: left;
+            vertical-align: middle;
+        }
+        input{
+            vertical-align: middle;
+        }
+        body{
+            padding: 200px 0;
+            background-color: antiquewhite;
+            align-content: center;
+        }
+        img{
+            width: 60px;
+            height: 30px;
+        }
+        input,img {
+            vertical-align: middle;
+        }*/
+    </style>
+</head>
+<body style="text-aglin:center;align-content: center;" background="../images/login_bg.jpg">
+<section>
+    <div class="box">
+        <div class="form">
+            <div style="padding: 10px 4px;">
+                <h2 STYLE="vertical-align: top;text-align: center;">登录</h2>
+            </div>
+            <form>
+                <!--<h1 style="text-align: center; top: 1px;">LOGIN IN</h1>-->
+                <!--<div>
+                    <input type="radio" name="role" value="管理员" /> 管理员
+                    <input type="radio" name="role" value="教师" /> 教师
+                    <input type="radio" name="role" value="学生" /> 学生
+                </div>-->
+                <div class="inputBx">
+                    <input type="text" placeholder="邮箱/电话号码" name="username" id="username">
+                    <img alt="图片丢失" src="../images/user.png">
+                </div>
+                <div class="inputBx">
+                    <input type="password" placeholder="密码" name="password" id="password">
+                    <img alt="图片丢失" src="../images/password.png">
+                </div>
+                <div class="inputA">
+                    <input type="text" placeholder="验证码" name="verify" id="verify">
+                    <img src="" height="30px" width="100px" onclick="getcode(this)" id="uu"></td>
+                </div>
+                <div class="inputBx">
+                    <input type="button" value="登录" id="dl" class="login">
+                    <input type="button" value="注册" name="register" class="register" onclick='location.href=("Register.html")' ><!--在本页面打开 onclick='window.open("Register.html")'/打开新页面-->
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<!--<body>
+<section>
+    <div class="box">
+        <div class="form">
+    <form name="login" >
+    <div>
+        <input type="radio" name="role" value="管理员" />管理员
+        <input type="radio" name="role" value="教师" />教师
+        <input type="radio" name="role" value="学生" />学生
+    </div>
+    <div class="inputBx">
+        <input type="text" placeholder="Username" name="username">-->
+        <!--<img alt="图片丢失" src="../images/user.png">-->
+    <!--</div>
+    <div class="inputBx">
+        <input type="password" placeholder="Password" name="password">
+        &lt;!&ndash;<img alt="图片丢失" src="../images/password.png">&ndash;&gt;
+    </div>
+    <div class="inputBx">
+        <input type="submit" value="登录">
+        <input type="button" value="注册" onclick="window.open('http://localhost:8080/management/register.jsp','blank');" style="background:green;width:100px;height:45px; color: white; margin-left:50px;text-align:left;">
+    </div>
+</form>-->
+    <!--<table border="0" cellpadding="1" align="center">
+    <tr><td>用户名:</td>
+        <td><input type="text" name="username" id="username" ></td>
+    </tr>
+    <tr><td>密码:</td>
+        <td><input type="password" name="password" id="password" ></td>
+    </tr>
+    <tr><td>验证码:</td>
+        <td><input type="text" name="verify" id="verify" height="50px" style="width:90px; height: 20px">
+        <img src="" height="30px" width="100px" onclick="getcode(this)" id="uu"></td>
+    </tr></table>
+        <div style="text-align: center">
+            <button type="submit" class="enter-btn" >登录</button>
+        </div>-->
+    <!--<span style="text-align:center">
+    <input type="button" value="登录" id="dl">
+    </span>-->
+       <!-- </div>
+    </div>
+    </section>
+</body>-->
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $.ajaxSetup({
+            "token":sessionStorage.getItem("token"),
+            "verify":sessionStorage.getItem("verify")
+        })
+        $("#dl").click(function (){
+            var username = $("#username").val()
+            var password = $("#password").val()
+            var verify = $("#verify").val()
+            $.ajax({
+                url:"http://localhost:8080/deyu/v2/user?action=Login",
+                type: "post",
+                dataType: "json",
+                data: {"username":username,"password":password,"verify":verify},
+                success:function (data){
+                    sessionStorage.setItem("token",data.token)
+                    alert(JSON.stringify(data))
+                },error:function (data){
+                    alert(JSON.stringify(data))
+                },complete: function (xhr, data) {
+                    console.log(xhr.getAllResponseHeaders())
+                    //alert(this.getResponseHeader("verify"))
+                }
+            })
+        })
+    })
+    getcode($("#uu"))
+    function getcode(obj){ //
+        var url = "http://localhost:8080/deyu/getverifycode?time="+new Date().getTime()
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);  //建立连接
+        xhr.responseType = "blob";  //response 是一个包含二进制数据的 Blob 对象。
+        xhr.send(null)  //发送数据
+        xhr.onload = function () {  //接受数据
+            // 请求完成
+            if (this.status === 200) {
+                // 返回200
+                var blob = this.response;
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);    // 转换为base64，可以直接放入a表情href
+                reader.onload = function(e) {
+                    $(obj).prop("src",e.target.result);
+                }
+                sessionStorage.setItem("verify",this.getResponseHeader("verify"))
+            }
+        };
+        // 发送ajax请求
+    }
+</script>
+</html>

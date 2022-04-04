@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            filter: hue-rotate(120deg);
+            animation: animate 10s linear infinite;
+        }
+        .box {
+            position: relative;
+            padding: 50px;
+            width: 360px;
+            height: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:rgba(250,250,250,0.8);
+            border-radius: 6px;
+            box-shadow: 0 5px 35px rgba(0,0,0,0.2);
+        }
+        .box::after{
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+        .box .form {
+            position: relative;
+            width: 100%;
+        }
+        .box .form h2 {
+            color: black;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .box .form .inputBx {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .box .form .inputBx input {
+            width: 100%;
+            outline: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            padding: 8px 10px;
+            /*padding-left: 50px;*/
+            border-radius: 6px;
+            color: black;
+            font-size: 16px;
+            font-weight: 300;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.2);
+        }
+        .box .form .inputBx input::placeholder{
+            color:darkgray;
+            text-align: center;
+        }
+        .box .form .inputBx input.login {
+            background: #FFA500;
+            color: #111;
+            max-width: 100px;
+            padding: 8px 10px;
+            box-shadow: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-right: 55px;
+
+        }
+        .box .form .inputBx input.register{
+            background: #008000;
+            color: #ffffff;
+            max-width: 100px;
+            padding: 8px 10px;
+            box-shadow: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        /*form  {
+            text-align: center;
+            vertical-align: middle;
+        }
+        body{
+            background-color: antiquewhite;
+        }*/
+    </style>
+</head>
+<body background="../images/login_bg.jpg">
+<section>
+    <div class="box">
+        <div class="form">
+            <div style="padding: 10px 4px;">
+                <h2 STYLE="vertical-align: top;text-align: center;">注册</h2>
+            </div>
+            <form>
+                <!--<h1 style="text-align: center; top: 1px;">LOGIN IN</h1>-->
+                <!--<div>
+                    <input type="radio" name="role" value="管理员" /> 管理员
+                    <input type="radio" name="role" value="教师" /> 教师
+                    <input type="radio" name="role" value="学生" /> 学生
+                </div>-->
+                <div class="inputBx">
+                    <input type="text" placeholder="电话号码" name="phone" id="phone">
+                </div>
+                <div class="inputBx">
+                    <input type="text" placeholder="姓名" name="name" id="name">
+                </div>
+                <div class="inputBx">
+                    <input type="text" placeholder="邮箱" name="email" id="email">
+                </div>
+                <div class="inputBx">
+                    <input type="password" placeholder="密码" name="password" id="password">
+                </div>
+                <div class="inputBx">
+                    <input type="button" value="登录" id="dl" class="login" onclick='location.href=("Login.html")'>
+                    <input type="button" value="注册" name="register" id="tj" class="register" ><!--在本页面打开 onclick='window.open("Register.html")'/打开新页面 onclick='location.href=("Register.html")'-->
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--<form name="register" >
+    手机号码<input type="text" name="phone"/><br/>
+    姓名<input type="text" name="name"/><br/>
+    邮箱<input type="text" name="email"/><br/>
+    密码<input type="password" name="password"/><br/>
+    <input type="submit" value="注册" id="tj"/><a style="color: blue">去登录</a>
+</form>-->
+</body>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#tj").click(function (){
+            var phone = $("#phone").val()
+            var name = $("#name").val()
+            var email = $("#email").val()
+            var password = $("#password").val()
+            $.ajax({
+                url:"http://localhost:8080/deyu/v2/user?action=Register",
+                type:"post",
+                dataType:"json",
+                data:{"phone":phone,"name":name,"email":email,"password":password},
+                success:function(data){
+                    alert(data.name)
+                    alert(data)
+                }
+            })
+        })
+    })
+</script>
+</html>

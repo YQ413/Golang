@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="register" >
+    手机号码<input type="text" name="phone"/><br/>
+    姓名<input type="text" name="name"/><br/>
+    邮箱<input type="text" name="email"/><br/>
+    密码<input type="password" name="password"/><br/>
+    <input type="submit" value="注册" id="tj"/>
+</form>
+</body>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $.ajaxSetup({
+            "token":sessionStorage.getItem("token"),
+            "verify":sessionStorage.getItem("verify")
+        })
+        $("#dl").click(function (){
+            var username = $("#username").val()
+            var password = $("#password").val()
+            var verify = $("#verify").val()
+            $.ajax({
+                url:"http://localhost:8080/deyu/v2/user?action=Login",
+                type: "post",
+                dataType: "json",
+                data: {"username":username,"password":password,"verify":verify},
+                success:function (data){
+                    sessionStorage.setItem("token",data.token)
+                        alert(JSON.stringify(data))
+                },error:function (data){
+                    alert(JSON.stringify(data))
+                },complete: function (xhr, data) {
+                    console.log(xhr.getAllResponseHeaders())
+                }
+            })
+        })
+        $("#tj").click(function (){
+            var phone = $("#phone").val()
+            var name = $("#name").val()
+            var email = $("#email").val()
+            var password = $("#password").val()
+            $.ajax({
+                url:"http://localhost:8080/deyu/v2/user?action=Register",
+                type:"post",
+                dataType:"json",
+                data:{"phone":phone,"name":name,"email":email,"password":password},
+                success:function(data){
+                }
+            })
+        })
+    })
+    getcode($("#uu"))
+    function getcode(obj){
+        var url = "http://localhost:8080/deyu/getverifycode?time="+new Date().getTime()
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = "blob";
+        xhr.send()
+        xhr.onload = function () {
+            // 请求完成
+            if (this.status === 200) {
+                // 返回200
+                var blob = this.response;
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);  // 转换为base64，可以直接放入a表情href
+                reader.onload = function(e) {
+                    $(obj).prop("src",e.target.result);
+                }
+                sessionStorage.setItem("verify",this.getResponseHeader("verify"))
+            }
+        };
+        // 发送ajax请求
+    }
+</script>
+</html>
+<!--<form name="register" >
+    手机号码<input type="text" name="phone"/><br/>
+    姓名<input type="text" name="name"/><br/>
+    邮箱<input type="text" name="email"/><br/>
+    密码<input type="password" name="password"/><br/>
+    <input type="submit" value="注册" id="tj"/>
+</form>
+$("#tj").click(function (){
+            var phone = $("#phone").val()
+            var name = $("#name").val()
+            var email = $("#email").val()
+            var password = $("#password").val()
+            $.ajax({
+                url:"http://localhost:8080/deyu/v2/user?action=Register",
+                type:"post",
+                dataType:"json",
+                data:{"phone":phone,"name":name,"email":email,"password":password},
+                success:function(data){
+                }
+            })
+        })
+-->
